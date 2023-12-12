@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
   signInWithPopup,
 } from "firebase/auth";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase/firebase.config";
 import googleLogo from "../../assets/googlepnglogo.png";
@@ -14,20 +14,14 @@ const Register = () => {
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
+    // const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    setName(name);
-    setEmail(email);
-    setPassword(password);
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         const user = result.user.email;
